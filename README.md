@@ -12,7 +12,7 @@ git clone https://github.com/amhue/dotfiles.git
 ```
 
 ```bash
-cd 'dotfiles.git'
+cd dotfiles.git
 chmod +x build.sh
 sudo ./build.sh
 ```
