@@ -15,4 +15,4 @@ ln -sf $(pwd)/.zshrc ~/
 ln -sf $(pwd)/.gitconfig ~/
 
 # yay -Syu
-yay -S $(cat intalled.txt)
+yay -S $(cat intalled)

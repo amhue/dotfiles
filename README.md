@@ -13,6 +13,6 @@ git clone https://github.com/amhue/dotfiles
 
 ```bash
 cd dotfiles
-chmod +x build.sh
-sudo ./build.sh
+chmod +x setup.sh
+./setup.sh
 ```
