@@ -8,7 +8,7 @@ text editors (*emacs* and *neovim*), *spicetify* and *zsh*.
 It also includes my installed applications and cursor, icons and fonts.
 
 ```bash
-git clone https://github.com/amhue/dotfiles.git
+git clone https://github.com/amhue/dotfiles
 ```
 
 ```bash
