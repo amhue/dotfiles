@@ -1,0 +1,10 @@
+[font]
+normal.family = "CaskaydiaCove Nerd Font"
+normal.style = "Regular"
+# bold.family = "Monaco"
+# bold.style = "Bold"
+# italic.family = "Monaco"
+# italic.style = "Italic"
+# bold_italic.family = "Monaco"
+# bold_italic.style = "Bold Italic"
+size = 11.0

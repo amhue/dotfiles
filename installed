@@ -1,0 +1,25 @@
+acpi alacritty alsa-utils aspell-en atril autotiling base base-devel
+bdf-unifont blueman bluez bluez-utils brightnessctl chromium
+clang-format-all-git dmenu efibootmgr emacs fastfetch firefox
+galculator gdb gimp git gnome-keyring grim grub gst-plugin-pipewire
+gtk3-classic hexedit htop hwdetect i3status intel-ucode iwd
+jdk-openjdk libpulse linux linux-firmware luarocks lxappearance ly
+mako man-pages maven mesa-utils mpv neovide neovim
+network-manager-applet networkmanager noto-fonts-cjk nvidia-open
+nvidia-settings nwg-look pavucontrol pipewire pipewire-alsa
+pipewire-jack pipewire-pulse playerctl poweralertd pulseaudio-alsa
+python-setuptools raylib shotwell spotify-launcher steam sway swaybg
+swayidle swaylock texlive-basic thunar tmux ttf-cascadia-code unzip
+v4l2loopback-dkms visual-studio-code-bin vlc wget wireplumber
+wl-clipboard wmenu xarchiver xcursor-themes xdg-desktop-portal-wlr
+xf86-video-vesa xorg-bdftopcf xorg-docs xorg-font-util
+xorg-fonts-100dpi xorg-fonts-75dpi xorg-fonts-encodings xorg-iceauth
+xorg-mkfontscale xorg-server xorg-server-common xorg-server-devel
+xorg-server-xephyr xorg-server-xnest xorg-server-xvfb xorg-sessreg
+xorg-setxkbmap xorg-smproxy xorg-x11perf xorg-xauth xorg-xbacklight
+xorg-xcmsdb xorg-xcursorgen xorg-xdpyinfo xorg-xdriinfo xorg-xev
+xorg-xgamma xorg-xhost xorg-xinput xorg-xkbcomp xorg-xkbevd
+xorg-xkbutils xorg-xkill xorg-xlsatoms xorg-xlsclients xorg-xmodmap
+xorg-xpr xorg-xprop xorg-xrandr xorg-xrdb xorg-xrefresh xorg-xset
+xorg-xsetroot xorg-xvinfo xorg-xwayland xorg-xwd xorg-xwininfo
+xorg-xwud yay yay-debug zip zram-generator zsh
