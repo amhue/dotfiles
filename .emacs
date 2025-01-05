@@ -20,7 +20,7 @@
 
 ;; install aspell-en for flyspell
 (setq package-selected-packages
-      '(lsp-mode lsp-treemacs lsp-java projectile
+      '(lsp-mode lsp-treemacs lsp-java magit
                  hydra flycheck company which-key dap-mode nerd-icons-completion
                  rainbow-delimiters lua-mode modus-themes
                  doom-modeline clang-format prettier-js undo-tree
@@ -176,4 +176,4 @@
    '("2e7dc2838b7941ab9cabaa3b6793286e5134f583c04bde2fba2f4e20f2617cf7" default))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(lsp-mode lsp-treemacs lsp-java projectile hydra flycheck company which-key dap-mode nerd-icons-completion rainbow-delimiters lua-mode modus-themes doom-modeline clang-format prettier-js undo-tree)))
+   '(magit lsp-mode lsp-treemacs lsp-java hydra flycheck company which-key dap-mode nerd-icons-completion rainbow-delimiters lua-mode modus-themes doom-modeline clang-format prettier-js undo-tree)))

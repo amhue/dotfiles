@@ -102,8 +102,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 alias suspend="systemctl sleep"
 alias vi="nvim"
+
+alias fastfetchs="fastfetch --config examples/9.jsonc"
+alias fastfetchl="fastfetch --config examples/10.jsonc"
 
 JAVA_HOME="/usr/lib/jvm/java-23-openjdk/"
 

@@ -1,3 +1,9 @@
 [user]
 	email = aritramondal855@gmail.com
 	name = Aritra Mondal
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
