@@ -145,7 +145,7 @@ exec swayidle -w \
     bindsym $mod+7 workspace number 7
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
+    bindsym $mod+0 workspace number 0
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -156,7 +156,7 @@ exec swayidle -w \
     bindsym $mod+Shift+7 move container to workspace number 7
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
+    bindsym $mod+Shift+0 move container to workspace number 0
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -272,7 +272,7 @@ for_window [window_type="menu"] floating enable
 for_window [title="galculator"] floating enable
 for_window [title="Volume Control"] floating enable
 for_window [title="Bluetooth Devices"] floating enable
-
+for_window [title="[pP]icture.*[iI]n.*[pPicture]"] floating enable
 for_window [title="xarchiver"] floating enable
 # for_window [title="[sS]ettings"] floating enable
 

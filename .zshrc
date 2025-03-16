@@ -117,3 +117,5 @@ export NVM_DIR="$HOME/.nvm"
 
 
 export PATH=$PATH:/home/aritr/.spicetify
+
+. "$HOME/.local/bin/env"

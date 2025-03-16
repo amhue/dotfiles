@@ -7,7 +7,6 @@ ln -sf $(pwd)/i3status ~/.config/
 sudo ln -sf $(pwd)/ly /etc/
 ln -sf $(pwd)/mako ~/.config/
 ln -sf $(pwd)/nvim ~/.config/
-ln -sf $(pwd)/spicetify ~/.config/
 ln -sf $(pwd)/sway ~/.config/
 
 ln -sf $(pwd)/.emacs ~/

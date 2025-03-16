@@ -10,6 +10,7 @@
 (set-face-attribute 'default nil :font "CaskaydiaCove NFM 11")
 
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
+(add-hook 'conf-mode-hook 'display-line-numbers-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (setq display-line-numbers-type 'relative)
@@ -18,13 +19,22 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
+(put 'narrow-to-region 'disabled nil)
+
+;; (defun splash-buffer ()
+;;   (interactive)
+;;   (switch-to-buffer (get-buffer-create "Splash Screen"))
+;;   (read-only-mode)
+;;   (when (equal "q" (char-to-string (read-char)))
+;;     (kill-buffer)))
+
 ;; install aspell-en for flyspell
 (setq package-selected-packages
       '(lsp-mode lsp-treemacs lsp-java magit
                  hydra flycheck company which-key dap-mode nerd-icons-completion
                  rainbow-delimiters lua-mode modus-themes
                  doom-modeline clang-format prettier-js undo-tree
-                 yasnippet flyspell-correct))
+                 yasnippet flyspell-correct python-black))
 
 (when (cl-find-if-not #'package-installed-p package-selected-packages)
   (package-refresh-contents)
@@ -43,6 +53,7 @@
 (add-hook 'css-mode-hook 'lsp)
 (add-hook 'lua-mode-hook 'lsp)
 (add-hook 'python-mode-hook 'lsp)
+(add-hook 'python-mode-hook 'python-black-on-save-mode)
 (add-hook 'java-mode-hook 'lsp)
 (add-hook 'js-mode-hook 'prettier-js-mode)
 (add-hook 'html-mode-hook 'prettier-js-mode)
@@ -65,6 +76,7 @@
 
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+  (add-hook 'lsp-mode-hook #'yas-minor-mode)
   (require 'dap-cpptools))
 
 (electric-pair-mode 1)
@@ -113,8 +125,7 @@
 
 (global-set-key (kbd "C-x C-z") 'kill-buffer-and-window)
 
-(add-hook 'text-mode-hook 'undo-tree-mode)
-(add-hook 'prog-mode-hook 'undo-tree-mode)
+(global-undo-tree-mode)
 
 (global-set-key (kbd "C-_") 'undo-tree-undo)
 (global-set-key (kbd "M-_") 'undo-tree-redo)
@@ -173,7 +184,12 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(modus-vivendi))
  '(custom-safe-themes
-   '("2e7dc2838b7941ab9cabaa3b6793286e5134f583c04bde2fba2f4e20f2617cf7" default))
+   '("2e7dc2838b7941ab9cabaa3b6793286e5134f583c04bde2fba2f4e20f2617cf7"
+     default))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(magit lsp-mode lsp-treemacs lsp-java hydra flycheck company which-key dap-mode nerd-icons-completion rainbow-delimiters lua-mode modus-themes doom-modeline clang-format prettier-js undo-tree)))
+   '(clang-format company dap-mode doom-modeline flycheck hydra lsp-java
+		  lsp-mode lsp-treemacs lua-mode magit modus-themes
+		  nerd-icons-completion prettier-js rainbow-delimiters
+		  undo-tree which-key))
+ '(python-black-command "black"))
