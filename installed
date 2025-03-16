@@ -1,4 +1,3 @@
-
 7zip
 a52dec
 abseil-cpp
@@ -133,6 +132,7 @@ gettext
 ghostscript
 giflib
 git
+github-cli
 glib-networking
 glib2
 glibc
