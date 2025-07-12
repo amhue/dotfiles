@@ -13,7 +13,9 @@
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type (if (eq major-mode 'text-mode)
+                                    'relative
+                                  t))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
@@ -32,9 +34,10 @@
 (setq package-selected-packages
       '(lsp-mode lsp-treemacs lsp-java magit
                  hydra flycheck company which-key dap-mode nerd-icons-completion
-                 rainbow-delimiters lua-mode modus-themes
+                 rainbow-delimiters lua-mode modus-themes java-snippets
                  doom-modeline clang-format prettier-js undo-tree
-                 yasnippet flyspell-correct python-black))
+                 yasnippet flyspell-correct python-black nasm-mode
+                 projectile))
 
 (when (cl-find-if-not #'package-installed-p package-selected-packages)
   (package-refresh-contents)
@@ -42,8 +45,18 @@
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
+(setq lsp-file-watch-threshold 9000)
+
 (require 'company)
 (add-hook 'prog-mode-hook #'company-mode)
+
+(require 'projectile)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(projectile-mode +1)
+(setq projectile-cleanup-known-projects nil)
+(setq projectile-project-search-path '(("~/Documents/Projects/" . 1)))
 
 (which-key-mode)
 (add-hook 'c-mode-hook 'lsp)
@@ -51,15 +64,39 @@
 (add-hook 'js-mode-hook 'lsp)
 (add-hook 'html-mode-hook 'lsp)
 (add-hook 'css-mode-hook 'lsp)
-(add-hook 'lua-mode-hook 'lsp)
+(add-hook 'lua-mode-hook (lambda ()
+                           (lsp)
+                           (add-hook 'before-save-hook (lambda ()
+                                                         (lsp-format-buffer)))))
 (add-hook 'python-mode-hook 'lsp)
 (add-hook 'python-mode-hook 'python-black-on-save-mode)
-(add-hook 'java-mode-hook 'lsp)
-(add-hook 'js-mode-hook 'prettier-js-mode)
+
+(defun java-setup ()
+  (add-hook 'before-save-hook (lambda ()
+                                (lsp-java-organize-imports)))
+  (clang-format-on-save-mode)
+  (lsp)
+  (setq lsp-java-java-path "/usr/lib/jvm/java-24-openjdk")
+
+  (setq lsp-java-configuration-runtimes
+        '[(
+           ;; :name "JavaSE-24"
+           :path "/usr/lib/jvm/java-24-openjdk"
+           :default t)])
+  (lsp-mode))
+
+(add-hook 'java-mode-hook 'java-setup)
+(add-hook 'js-mode-hook (lambda ()
+                          (prettier-js-mode)))
+;; (setq lsp-javascript-preferences-import-module-specifier "relative")))
 (add-hook 'html-mode-hook 'prettier-js-mode)
 (add-hook 'css-mode-hook 'prettier-js-mode)
 (add-hook 'c-mode-hook 'clang-format-on-save-mode)
 (add-hook 'c++-mode-hook 'clang-format-on-save-mode)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+(add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
 
 ;; set icons
 (require 'nerd-icons)
@@ -67,10 +104,11 @@
 
 ;; use doom modeline
 (doom-modeline-mode)
+(setq word-wrap t)
 
 (require 'flyspell-correct)
 (require 'flyspell-correct-ido)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (global-set-key (kbd "M-$") 'flyspell-correct-wrapper)
 
@@ -94,6 +132,9 @@
 
 (global-set-key (kbd "C-M-f") 'forward-word)
 (global-set-key (kbd "C-M-b") 'backward-word)
+
+(global-hl-line-mode 1)
+(set-face-background 'hl-line "#141114")
 
 ;; hydra is so damn cool. i know i'm an idiot
 (defhydra window-manip (global-map "C-c")
@@ -184,12 +225,19 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(modus-vivendi))
  '(custom-safe-themes
-   '("2e7dc2838b7941ab9cabaa3b6793286e5134f583c04bde2fba2f4e20f2617cf7"
+   '("fbf73690320aa26f8daffdd1210ef234ed1b0c59f3d001f342b9c0bbf49f531c"
+     "2e7dc2838b7941ab9cabaa3b6793286e5134f583c04bde2fba2f4e20f2617cf7"
      default))
+ '(highlight-indent-guides-method 'character)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(clang-format company dap-mode doom-modeline flycheck hydra lsp-java
-		  lsp-mode lsp-treemacs lua-mode magit modus-themes
-		  nerd-icons-completion prettier-js rainbow-delimiters
-		  undo-tree which-key))
+   '(clang-format company dap-mode doom-modeline flycheck
+                  flyspell-correct hydra java-snippets lsp-java
+                  lsp-mode lsp-treemacs lua-mode magit modus-themes
+                  nasm-mode nerd-icons-completion prettier-js
+                  python-black rainbow-delimiters undo-tree which-key
+                  yasnippet))
+ '(prettier-js-args
+   '("--config" "/home/aritr/Documents/Projects/Web/.prettierrc"))
+ '(prettier-js-command "prettier")
  '(python-black-command "black"))

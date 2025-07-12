@@ -109,7 +109,7 @@ alias vi="nvim"
 alias fastfetchs="fastfetch --config examples/9.jsonc"
 alias fastfetchl="fastfetch --config examples/10.jsonc"
 
-JAVA_HOME="/usr/lib/jvm/java-23-openjdk/"
+JAVA_HOME="/usr/lib/jvm/java-24-openjdk/"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
