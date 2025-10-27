@@ -16,15 +16,20 @@ set $right l
 # Your preferred terminal emulator
 set $term alacritty
 # Your preferred application launcher
-set $menu wmenu-run
+set $menu wofi --show drun --sort-order alphabetical --prompt "Search for app..." # -I
 set $browser firefox
 set $files thunar
 
-exec "swaybg -i ~/Pictures/df2cac5351de39b23537658df53a3aa6.jpg -m fill"
+exec "swaybg -i ~/Pictures/pexels-pixabay-159862.jpg -m fill"
+exec "eww daemon"
 exec mako
 exec blueman-applet
 exec poweralertd
 exec autotiling
+exec wl-paste --watch cliphist store
+
+corner_radius 6
+
 # exec ydotoold
 
 # FUCK this took ages to find out
@@ -35,9 +40,9 @@ seat seat0 xcursor_theme volantes_cursors
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * background /home/aritr/Pictures/df2cac5351de39b23537658df53a3aa6.jpg fill
-output * background ~/Pictures/df2cac5351de39b23537658df53a3aa6.jpg fill
+output * background ~/Pictures/pexels-pixabay-159862.jpg fill
 
-font pango:CaskaydiaCove Nerd Font Regular 9.5
+font pango:RecMonoLinear Nerd Font 9.5
 
 #
 # Example configuration:
@@ -51,9 +56,9 @@ font pango:CaskaydiaCove Nerd Font Regular 9.5
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 180 'swaylock -f -c 000000 --font "Cascadia Mono""' \
+         timeout 180 'swaylock'  \
          timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000 --font "Cascadia Mono"' \
+         before-sleep 'swaylock' \
 	 lid-suspend 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
 
 #
@@ -81,12 +86,14 @@ exec swayidle -w \
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym $mod+Escape exec eww close power
 
     # Kill focused window
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu -f "CaskaydiaCove Nerd Font Regular 10"
+    # bindsym $mod+d exec $menu -f "CaskaydiaCove Nerd Font Regular 10"
+    bindsym $mod+d exec $menu
 
     bindsym $mod+n exec $browser
     bindsym $mod+m exec $files
@@ -102,11 +109,15 @@ exec swayidle -w \
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you want to log out?' -B 'Yes' 'swaymsg exit'
-    bindsym $mod+Shift+r exec swaynag -t warning -m 'Do you want to shutdown?' -B 'Yes' 'shutdown now'
-    bindsym $mod+Shift+f exec swaynag -t warning -m 'Do you want to reboot?' -B 'Yes' 'reboot'
-    bindsym $mod+Shift+v exec "systemctl sleep;swaylock -f -c 000000 --font 'Cascadia Mono'"
-    bindsym $mod+Shift+b exec "swaylock -f -c 000000 --font 'Cascadia Mono'"
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you want to log out?' -b 'Yes' 'swaymsg exit'
+    # bindsym $mod+Shift+r exec swaynag -t warning -m 'Do you want to shutdown?' -b 'Yes' 'shutdown now'
+    # bindsym $mod+Shift+f exec swaynag -t warning -m 'Do you want to reboot?' -b 'Yes' 'reboot'
+    # bindsym $mod+Shift+v exec "systemctl sleep;swaylock"
+    bindsym $mod+Shift+r exec "eww open power"
+    bindsym $mod+Shift+b exec "swaylock"
+
+    bindsym $mod+Shift+g exec cliphist list | wofi -S dmenu --prompt "Search clipboard..." | cliphist decode | wl-copy
+    bindsym $mod+Shift+t exec cat ~/emoji-list.txt | wofi -i --show dmenu --prompt "Search for emoji..." | awk '{print $1}'| tr -d "[:space:]" | wl-copy
 
 #
 # Moving around:
@@ -274,14 +285,37 @@ for_window [title="Volume Control"] floating enable
 for_window [title="Bluetooth Devices"] floating enable
 for_window [title="[pP]icture.*[iI]n.*[pPicture]"] floating enable
 for_window [title="xarchiver"] floating enable
-# for_window [title="[sS]ettings"] floating enable
+
+for_window [class=".*"] {
+    opacity 0.92
+    layer "background"
+    blur enable
+    blur_xray enable
+    shadows enable
+    blur_noise 0.2
+    blur_contrast 2
+    blur_saturation 1
+    blur_brightness 1.1
+    blur_ignore_transparent enable
+}
+
+# default_border pixel 2
 
 gaps inner 3
 gaps outer 8
 
+# client.focused "#9514b5" "#9514b5" "#ffffff" "#111111" "#9514b5"
+
+client.focused          #8b6f47 #3a332b #d4c5a0 #a67c52   #8b6f47
+client.focused_inactive #5c4e3a #2d2520 #b5a082 #6b5d4f   #5c4e3a
+client.unfocused        #4a3f35 #1e1b18 #8a8071 #4a3f35   #4a3f35
+client.urgent           #d4704f #cc6b47 #ffffff #e85a4f   #d4704f
+client.placeholder      #6b5d4f #2d2520 #8a8071 #6b5d4f   #6b5d4f
+
 bar {
-    status_command i3status
+    # status_command i3status
     # height = 20
+    swaybar_command waybar
 }
 
 include /etc/sway/config.d/*

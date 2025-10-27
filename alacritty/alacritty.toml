@@ -1,5 +1,5 @@
 [font]
-normal.family = "CaskaydiaCove Nerd Font"
+normal.family = "RecMonoLinear Nerd Font"
 normal.style = "Regular"
 # bold.family = "Monaco"
 # bold.style = "Bold"
@@ -8,3 +8,5 @@ normal.style = "Regular"
 # bold_italic.family = "Monaco"
 # bold_italic.style = "Bold Italic"
 size = 11.0
+# [window]
+# opacity = 0.85

@@ -1,0 +1,173 @@
+* {
+    font-family: "RecMonoLinear Nerd Font";
+    text-shadow: 1px 1px 2px #000000;
+}
+
+#custom-shutdown {
+    font-size: 1.4em;
+    color: #f5f5dc;
+    background: rgba(60, 50, 40, 0.7);
+    border: 2px solid #6b5d4f;
+    padding-right: 5px;
+    margin-top: 5px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+#custom-shutdown:hover {
+    background: rgba(80, 68, 55, 0.8);
+}
+
+#workspaces {
+    /* padding: 0 1px; */
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-top: 5px;
+    /* background-color: ; */
+    background: rgba(30, 27, 24, 0.85);
+}
+
+#workspaces button {
+    /* font-size: 1.05em; */
+    color: #f5f5dc;
+    background: rgba(60, 50, 40, 0.7);
+    border: 1px solid #6b5d4f;
+    border-radius: 0;
+}
+
+#workspaces button:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+#workspaces button:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.modules-center {
+    background: rgba(30, 27, 24, 0.85);
+    /* padding: 0 10px; */
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+#workspaces button:hover {
+    background: rgba(80, 68, 55, 0.8);
+}
+
+#workspaces button.visible {
+    background: #8b6f47;
+}
+
+window#waybar {
+    /* background: rgba(30, 27, 24, 0.85); */
+    border-radius: 10px;
+    /* border-bottom: 2px solid #4a3f35; */
+    color: white;
+    background-color: transparent;
+    /* max-width: 70%; */
+}
+
+#custom-arch {
+    font-size: 1.4em;
+    color: #f5f5dc;
+    background: rgba(60, 50, 40, 0.7);
+    border: 1px solid #6b5d4f;
+    border-radius: 10px 0 0 10px;
+}
+
+
+#custom-arch:hover {
+    background: rgba(80, 68, 55, 0.8);
+}
+
+#custom-firefox {
+    font-size: 1.4em;
+    color: #f5f5dc;
+    background: rgba(60, 50, 40, 0.7);
+    border: 1px solid #6b5d4f;
+    padding-right: 5px;
+}
+
+#custom-firefox:hover {
+    background: rgba(80, 68, 55, 0.8);
+}
+
+#custom-emacs {
+    font-size: 1.4em;
+    color: #f5f5dc;
+    background: rgba(60, 50, 40, 0.7);
+    border: 1px solid #6b5d4f;
+}
+
+#custom-emacs:hover {
+    background: rgba(80, 68, 55, 0.8);
+}
+
+#custom-files {
+    font-size: 1.4em;
+    color: #f5f5dc;
+    background: rgba(60, 50, 40, 0.7);
+    border: 1px solid #6b5d4f;
+    padding-right: 5px;
+}
+
+#custom-files:hover {
+    background: rgba(80, 68, 55, 0.8);
+}
+
+#custom-alacritty {
+    font-size: 1.4em;
+    color: #f5f5dc;
+    background: rgba(60, 50, 40, 0.7);
+    border: 1px solid #6b5d4f;
+    border-radius: 0 10px 10px 0;
+    padding-right: 5px;
+}
+
+#custom-alacritty:hover {
+    background: rgba(80, 68, 55, 0.8);
+}
+
+.modules-right {
+    background: rgba(30, 27, 24, 0.85);
+    /* padding: 0 10px; */
+    margin-top: 5px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+#battery, #clock, #memory, #cpu, #disk, #bluetooth, #pulseaudio, #network {
+    background: rgba(60, 50, 40, 0.7);
+    border: 1px solid #6b5d4f;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#bluetooth.connected {
+    background: rgba(60, 50, 40, 0.7);
+}
+
+#battery:hover, #clock:hover, #memory:hover, #cpu:hover, #disk:hover, #bluetooth:hover, #pulseaudio:hover, #network:hover {
+    background: rgba(80, 68, 55, 0.8);
+}
+
+#battery {
+    border-radius: 10px 0 0 10px;
+}
+
+#battery.warning {
+    background-color: #e6b450;
+}
+
+#battery.critical {
+    background-color: #d4704f;
+}
+
+#bluetooth.disabled {
+    background-color: #6b6660;
+}
+
+#bluetooth {
+    border-radius: 0 10px 10px 0;
+    background-color: #d4704f;
+}

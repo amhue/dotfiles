@@ -1,0 +1,36 @@
+(defwindow power
+    :monitor 0
+    :class "power"
+    :geometry (geometry :x "10px" :y "12px" :width "300px" :height "300px")
+    (shutdown))
+
+(defwidget shutdown []
+  (box :orientation "vertical"
+       :class "shutdown-box"
+       :valign "start"
+       :space-evenly true
+       (box :orientation "horizontal"
+            :class "power-label"
+            (label :text "Power Options")
+            (button :class "close" :onclick "eww close power" ""))
+       (box :class "btns"
+            :orientation "vertical"
+            (box :orientation "horizontal"
+                 :space-evenly true
+                 (button :class "off" :onclick "shutdown now"
+                         "󰐥")
+                 (button :class "reboot" :onclick "reboot"
+                         ""))
+            (box :orientation "horizontal"
+                 :space-evenly true
+                 (button :class "suspend" :onclick "systemctl suspend && swaylock && eww close power &"
+                         "󰤄")
+                 (button :class "logout" :onclick "swaymsg exit"
+                         "󰍃")))))
+
+(defwindow media
+    :monitor 0
+    :class "media"
+    :geometry (geometry :x "810" :y "300" :width "300px" :height "300px")
+    :stacking "bg"
+    (label :text "Hello"))

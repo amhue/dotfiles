@@ -1,0 +1,110 @@
+{
+    "layer": "top",
+    "modules-left": ["custom/shutdown", "sway/workspaces"],
+    "modules-center": ["custom/arch", "custom/firefox", "custom/emacs", "custom/files", "custom/alacritty"],
+    "modules-right": ["battery", "clock", "memory", "disk", "cpu", "network", "pulseaudio", "bluetooth"],
+    "sway/window": {
+        "max-length": 50
+    },
+    "custom/shutdown": {
+        "format": "{} 󰐥 ",
+        "tooltip-format": "Power Options",
+        "on-click": "eww open power"
+    },
+    "sway/workspaces": {
+        "persistent-workspaces": {
+            "1. 💻": [],
+            "2. 🎧": [],
+            "3. 🎮": []
+        }
+    },
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "states": {
+            "warning": 20,
+            "critical": 10
+        }
+    },
+    "clock": {
+        "format": "{:%Y-%m-%d %H:%M}",
+        "tooltip": false
+        // "format-alt": "{:%a, %d. %b  %H:%M}"
+    },
+    "bluetooth": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Bluetooth Settings",
+        "on-click": "blueman-manager"
+    },
+    "custom/arch": {
+        "format": "{} 󰣇 ",
+        "on-click": "wofi --show drun --sort-order alphabetical --prompt 'Search for app...'",
+        "tooltip-format": "Application Launcher"
+    },
+    "custom/firefox": {
+        "format": "{}  ",
+        "on-click": "firefox",
+        "tooltip-format": "Firefox"
+    },
+    "custom/emacs": {
+        "format": "{}  ",
+        "on-click": "emacsclient --alternate-editor= --create-frame",
+        "tooltip-format": "Emacs"
+    },
+    "custom/files": {
+        "format": "{}  ",
+        "on-click": "thunar",
+        "tooltip-format": "File Manager"
+    },
+    "custom/alacritty": {
+        "format": "{}  ",
+        "on-click": "alacritty",
+        "tooltip-format": "Alacritty"
+    },
+    "memory": {
+        "interval": 30,
+        "format": "{used:0.1f}G "
+    },
+    "disk": {
+        "interval": 30,
+        "format": "{free} ",
+        "path": "/home"
+    },
+    "cpu": {
+        "interval": 30,
+        "format": "{} "
+    },
+    "network": {
+        "format": "{ifname} ",
+        "format-wifi": "{signalStrength}% ",
+        "format-ethernet": "{ipaddr} 󰊗",
+        "format-disconnected": "󰅛 ", //An empty format will hide the module.
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected 󰅛",
+        "max-length": 50,
+        "on-click": "alacritty -e nmtui"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "max-volume": 400,
+        "format-icons": {
+            "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+            "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+            "headphone": "",
+            "hands-free": "󱡏",
+            "headset": "󰋎",
+            "phone": "",
+            "phone-muted": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "scroll-step": 1,
+        "on-click": "pavucontrol"
+    }
+}

@@ -1,0 +1,52 @@
+* {
+    text-shadow: 1px 1px 2px #000000;
+}
+
+.power {
+    background-color: transparent;
+}
+
+.shutdown-box {
+    background-color: rgba(30, 27, 24, 0.95);
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid #6b5d4f;
+}
+
+.off, .reboot, .suspend, .logout {
+    /* background-color: aliceblue; */
+    color: white;
+    font-size: 2em;
+    border: 1px solid #6b5d4f;
+    background-color: rgba(60, 50, 40, 0.95);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 5px;
+    /* margin-top: 10px; */
+}
+
+.btns {
+    margin-top: -5.8rem;
+    padding-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+}
+
+.power-label {
+    margin-top: -6.8em;
+    margin-bottom: -2.1em;
+    margin-left: -0.2em;
+    font-size: 1.2em;
+    padding-right: 0.2em;
+}
+
+.close {
+    padding: 2px 6px;
+    margin-left: 7em;
+    /* margin-right: 1em; */
+    border: 1px solid #6b5d4f;
+    margin-top: 7em;
+    margin-bottom: 7em;
+    background-color: rgba(60, 50, 40, 0.95);
+}

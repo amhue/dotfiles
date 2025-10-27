@@ -1,2 +1,5 @@
 default-timeout=5000
-font=CaskaydiaCove Nerd Font Regular 10
+font=RecMonoLinear Nerd Font 10
+border-radius=10
+background-color=#3C3228
+border-color=#6b5d4f

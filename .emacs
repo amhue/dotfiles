@@ -4,31 +4,29 @@
 (scroll-bar-mode -1)
 (column-number-mode t)
 
-(setq ido-everywhere t)
-(ido-mode)
+(defun splash ()
+  (scratch-buffer)
+  (kill-region (point-min) (point-max))
+  (insert (f-read-text "~/splash-text"))
+  (whitespace-mode -1))
 
-(set-face-attribute 'default nil :font "CaskaydiaCove NFM 11")
+(ido-mode)
+(setq ido-everywhere t)
+
+(set-face-attribute 'default nil :font "RecMonoLinear Nerd Font 11")
+(setq default-frame-alist '((font . "RecMonoLinear Nerd Font 11")))
 
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-(setq display-line-numbers-type (if (eq major-mode 'text-mode)
-                                    'relative
-                                  t))
+(setq display-line-numbers-type 'relative)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
 (put 'narrow-to-region 'disabled nil)
-
-;; (defun splash-buffer ()
-;;   (interactive)
-;;   (switch-to-buffer (get-buffer-create "Splash Screen"))
-;;   (read-only-mode)
-;;   (when (equal "q" (char-to-string (read-char)))
-;;     (kill-buffer)))
 
 ;; install aspell-en for flyspell
 (setq package-selected-packages
@@ -37,7 +35,7 @@
                  rainbow-delimiters lua-mode modus-themes java-snippets
                  doom-modeline clang-format prettier-js undo-tree
                  yasnippet flyspell-correct python-black nasm-mode
-                 projectile))
+                 pyvenv lsp-pyright pdf-tools nov))
 
 (when (cl-find-if-not #'package-installed-p package-selected-packages)
   (package-refresh-contents)
@@ -47,16 +45,25 @@
 
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
-(setq lsp-file-watch-threshold 9000)
+(setq lsp-file-watch-threshold nil)
 
 (require 'company)
 (add-hook 'prog-mode-hook #'company-mode)
 
-(require 'projectile)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(projectile-mode +1)
-(setq projectile-cleanup-known-projects nil)
-(setq projectile-project-search-path '(("~/Documents/Projects/" . 1)))
+(use-package lsp-mode
+  :ensure t
+  :config
+  (setq lsp-auto-guess-root t))
+
+(load "~/.emacs.d/projects.el")
+;; (require 'projects)
+
+(use-package pyvenv
+  :ensure t
+  :config
+  (pyvenv-mode 1))
+
+(setenv "PATH" (concat (getenv "PATH") ":/home/aritr/opt/bin"))
 
 (which-key-mode)
 (add-hook 'c-mode-hook 'lsp)
@@ -76,14 +83,17 @@
                                 (lsp-java-organize-imports)))
   (clang-format-on-save-mode)
   (lsp)
-  (setq lsp-java-java-path "/usr/lib/jvm/java-24-openjdk")
+  (setq lsp-java-java-path "/usr/lib/jvm/java-24-openjdk/bin/java")
 
   (setq lsp-java-configuration-runtimes
-        '[(
-           ;; :name "JavaSE-24"
-           :path "/usr/lib/jvm/java-24-openjdk"
-           :default t)])
-  (lsp-mode))
+        '(
+          :name "JavaSE-25"
+          :path "/usr/lib/jvm/java-25-openjdk"
+          :default t)))
+
+(with-eval-after-load 'lsp-java
+  (defun lsp-java--ls-command ()
+    '("/sbin/jdtls")))
 
 (add-hook 'java-mode-hook 'java-setup)
 (add-hook 'js-mode-hook (lambda ()
@@ -97,6 +107,9 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
+
+(require 'pdf-tools)
+(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
 ;; set icons
 (require 'nerd-icons)
@@ -134,7 +147,16 @@
 (global-set-key (kbd "C-M-b") 'backward-word)
 
 (global-hl-line-mode 1)
-(set-face-background 'hl-line "#141114")
+
+(add-hook 'buffer-list-update-hook (lambda ()
+                                     (if (string= (buffer-name) "*scratch*")
+                                         (progn
+                                           (whitespace-mode -1)
+                                           (goto-char (point-max)))
+                                       (whitespace-mode t))))
+
+(setq-default whitespace-style
+              '(face spaces empty tabs space-mark tab-mark))
 
 ;; hydra is so damn cool. i know i'm an idiot
 (defhydra window-manip (global-map "C-c")
@@ -206,18 +228,23 @@
 (if (not (display-graphic-p))
     (enmouse))
 
+;; (splash)
+
 (setq backup-directory-alist `(("." . "~/.emacs_backup")))
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs_undo")))
 
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+;; (setq lsp-workspace-root "~/Documents/Projects/c/")
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(flyspell-incorrect ((t (:underline (:color "forest green" :style wave :position nil))))))
+ '(flyspell-incorrect ((t (:underline (:color "forest green" :style wave :position nil)))))
+ '(hl-line ((t (:extend t :background "#141114")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -225,19 +252,25 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(modus-vivendi))
  '(custom-safe-themes
-   '("fbf73690320aa26f8daffdd1210ef234ed1b0c59f3d001f342b9c0bbf49f531c"
+   '("5c9d44822a24dd257aa68635498a032134e0535578142eb4e294cd9c16af0db5"
+     "01be51d3a575f5f565aca6485b135e39ad5662d071326bc38855154fd062fc32"
+     "74ba8278e74fbd0826b137f3589500a830b91eb8911a8873f10a2857fc406eda"
+     "6178b07d4098353ebccc6b2ae66368265dd9867e7119560f02cb79dbb96149e3"
+     "292a7482026054ebf039036f5f0a8cb670dea0c76bb8d34b6c9d74e19db8a9bc"
+     "fbf73690320aa26f8daffdd1210ef234ed1b0c59f3d001f342b9c0bbf49f531c"
      "2e7dc2838b7941ab9cabaa3b6793286e5134f583c04bde2fba2f4e20f2617cf7"
      default))
  '(highlight-indent-guides-method 'character)
  '(inhibit-startup-screen t)
+ '(lsp-java-server-install-dir "/usr/share/java/jdtls")
  '(package-selected-packages
    '(clang-format company dap-mode doom-modeline flycheck
                   flyspell-correct hydra java-snippets lsp-java
                   lsp-mode lsp-treemacs lua-mode magit modus-themes
-                  nasm-mode nerd-icons-completion prettier-js
+                  nasm-mode nerd-icons-completion nov prettier-js
                   python-black rainbow-delimiters undo-tree which-key
                   yasnippet))
  '(prettier-js-args
-   '("--config" "/home/aritr/Documents/Projects/Web/.prettierrc"))
+   '("--config" "/home/aritr/Documents/Projects/web/.prettierrc"))
  '(prettier-js-command "prettier")
  '(python-black-command "black"))
