@@ -18,7 +18,8 @@ ln -sf $(pwd)/splash-text ~/
 ln -sf $(pwd)/eww ~/.config/eww;
 ln -sf $(pwd)/waybar ~/.config/waybar;
 
-ln -sf $(pwd)/projects.el ~/.emacs.d/projects.el;
+mkdir -p ~/.emacs.d/lisp;
+ln -sf $(pwd)/projects.el ~/.emacs.d/lisp/projects.el;
 
 # yay -Syu
 yay -S $(cat installed);

@@ -15,6 +15,7 @@
 
 (set-face-attribute 'default nil :font "RecMonoLinear Nerd Font 11")
 (setq default-frame-alist '((font . "RecMonoLinear Nerd Font 11")))
+(set-fontset-font t 'bengali (font-spec :family "Akaash"))
 
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
@@ -55,8 +56,8 @@
   :config
   (setq lsp-auto-guess-root t))
 
-(load "~/.emacs.d/projects.el")
-;; (require 'projects)
+(add-to-list 'load-path "/home/aritr/.emacs.d/lisp/")
+(require 'projects)
 
 (use-package pyvenv
   :ensure t
