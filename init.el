@@ -4,13 +4,7 @@
 (scroll-bar-mode -1)
 (column-number-mode t)
 
-(defun splash ()
-  (scratch-buffer)
-  (kill-region (point-min) (point-max))
-  (insert (f-read-text "~/splash-text"))
-  (whitespace-mode -1))
-
-(ido-mode)
+(ido-mode t)
 (setq ido-everywhere t)
 
 (set-face-attribute 'default nil :font "RecMonoLinear Nerd Font 11")
@@ -58,6 +52,9 @@
 
 (add-to-list 'load-path "/home/aritr/.emacs.d/lisp/")
 (require 'projects)
+(require 'splash-screen)
+;; (add-hook 'after-make-frame-functions (lambda (frame) (splash)))
+(add-hook 'window-size-change-functions (lambda (-) (splash)))
 
 (use-package pyvenv
   :ensure t
@@ -133,24 +130,24 @@
 
 (electric-pair-mode 1)
 
-(global-set-key (kbd "C-c C-f") 'clang-format-buffer)
-(global-set-key (kbd "C-c C-v") 'whitespace-mode)
-(global-set-key (kbd "C-c RET") 'compile)
-(global-set-key (kbd "C-c C-j") 'compile)
-(global-set-key (kbd "C-c C-p") 'prettier-js)
+(global-set-key (kbd "C-c C-f") #'clang-format-buffer)
+(global-set-key (kbd "C-c C-v") #'whitespace-mode)
+(global-set-key (kbd "C-c RET") #'compile)
+(global-set-key (kbd "C-c C-j") #'project-compile)
+(global-set-key (kbd "C-c C-p") #'prettier-js)
 
-(global-set-key (kbd "<right>") 'ignore)
-(global-set-key (kbd "<left>") 'ignore)
-(global-set-key (kbd "<up>") 'ignore)
-(global-set-key (kbd "<down>") 'ignore)
+(global-set-key (kbd "<right>") #'ignore)
+(global-set-key (kbd "<left>") #'ignore)
+(global-set-key (kbd "<up>") #'ignore)
+(global-set-key (kbd "<down>") #'ignore)
 
-(global-set-key (kbd "C-M-f") 'forward-word)
-(global-set-key (kbd "C-M-b") 'backward-word)
+(global-set-key (kbd "C-M-f") #'forward-word)
+(global-set-key (kbd "C-M-b") #'backward-word)
 
 (global-hl-line-mode 1)
 
 (add-hook 'buffer-list-update-hook (lambda ()
-                                     (if (string= (buffer-name) "*scratch*")
+                                     (if (string= (buffer-name) "splash")
                                          (progn
                                            (whitespace-mode -1)
                                            (goto-char (point-max)))
@@ -228,8 +225,6 @@
 
 (if (not (display-graphic-p))
     (enmouse))
-
-;; (splash)
 
 (setq backup-directory-alist `(("." . "~/.emacs_backup")))
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs_undo")))

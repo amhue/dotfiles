@@ -9,7 +9,7 @@ ln -sf $(pwd)/mako ~/.config/;
 ln -sf $(pwd)/nvim ~/.config/;
 ln -sf $(pwd)/sway ~/.config/;
 
-ln -sf $(pwd)/.emacs ~/;
+ln -sf $(pwd)/init.el ~/.emacs.d/init.el;
 ln -sf $(pwd)/.zshrc ~/;
 ln -sf $(pwd)/.gitconfig ~/;
 
@@ -20,6 +20,7 @@ ln -sf $(pwd)/waybar ~/.config/waybar;
 
 mkdir -p ~/.emacs.d/lisp;
 ln -sf $(pwd)/projects.el ~/.emacs.d/lisp/projects.el;
+ln -sf $(pwd)/splash-screen.el ~/.emacs.d/lisp/splash-screen.el;
 
 # yay -Syu
 yay -S $(cat installed);
