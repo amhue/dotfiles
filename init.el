@@ -53,8 +53,6 @@
 (add-to-list 'load-path "/home/aritr/.emacs.d/lisp/")
 (require 'projects)
 (require 'splash-screen)
-;; (add-hook 'after-make-frame-functions (lambda (frame) (splash)))
-(add-hook 'window-size-change-functions (lambda (-) (splash)))
 
 (use-package pyvenv
   :ensure t

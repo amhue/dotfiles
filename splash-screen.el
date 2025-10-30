@@ -27,6 +27,7 @@
 
 (add-hook 'after-make-frame-functions (lambda (-) (new-splash)))
 (add-hook 'server-after-make-frame-hook (lambda () (new-splash)))
+(add-hook 'window-size-change-functions (lambda (-) (splash)))
 
 (splash)
 
