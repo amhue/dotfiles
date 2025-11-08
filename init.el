@@ -4,9 +4,6 @@
 (scroll-bar-mode -1)
 (column-number-mode t)
 
-(ido-mode t)
-(setq ido-everywhere t)
-
 (set-face-attribute 'default nil :font "RecMonoLinear Nerd Font 11")
 (setq default-frame-alist '((font . "RecMonoLinear Nerd Font 11")))
 (set-fontset-font t 'bengali (font-spec :family "Akaash"))
@@ -36,6 +33,9 @@
   (package-refresh-contents)
   (mapc #'package-install package-selected-packages))
 
+(ido-mode t)
+(setq ido-everywhere t)
+
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (setq-default tab-width 4)
@@ -44,6 +44,7 @@
 
 (require 'company)
 (add-hook 'prog-mode-hook #'company-mode)
+(add-hook 'org-mode-hook #'company-mode)
 
 (use-package lsp-mode
   :ensure t
@@ -60,6 +61,16 @@
   (pyvenv-mode 1))
 
 (setenv "PATH" (concat (getenv "PATH") ":/home/aritr/opt/bin"))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((python . t)
+                             (C . t)
+                             (latex . t)))
+
+(global-set-key (kbd "C-c o") #'org-agenda)
+
+(setq org-agenda-files (list "~/org/")
+      org-log-done 'time)
 
 (which-key-mode)
 (add-hook 'c-mode-hook 'lsp)
@@ -94,7 +105,6 @@
 (add-hook 'java-mode-hook 'java-setup)
 (add-hook 'js-mode-hook (lambda ()
                           (prettier-js-mode)))
-;; (setq lsp-javascript-preferences-import-module-specifier "relative")))
 (add-hook 'html-mode-hook 'prettier-js-mode)
 (add-hook 'css-mode-hook 'prettier-js-mode)
 (add-hook 'c-mode-hook 'clang-format-on-save-mode)
@@ -106,6 +116,7 @@
 
 (require 'pdf-tools)
 (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 ;; set icons
 (require 'nerd-icons)

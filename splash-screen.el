@@ -18,7 +18,8 @@
     (insert (f-read-text "~/splash-text"))
     (recenter-splash)
     (whitespace-mode -1)
-    (read-only-mode t)))
+    (read-only-mode t)
+    (goto-char (point-min))))
 
 (defun new-splash ()
   (switch-to-buffer

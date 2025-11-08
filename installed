@@ -3,6 +3,8 @@ alacritty
 alsa-firmware
 alsa-utils
 aria2
+aspell
+aspell-en
 autotiling
 base
 base-devel
@@ -18,9 +20,11 @@ chromium
 clang
 cliphist
 cloudflare-warp-bin
-code
 dkms
 dmidecode
+docker
+docker-buildx
+docker-compose
 dosfstools
 doxygen
 efibootmgr
@@ -48,6 +52,7 @@ libserialport
 linux
 linux-firmware
 linux-headers
+logisim-evolution-bin
 ly
 mako
 man-db
@@ -55,6 +60,7 @@ man-pages
 maven
 mpv
 mtpfs
+mupdf
 nasm
 neovim
 networkmanager
@@ -68,6 +74,7 @@ openbsd-netcat
 pavucontrol
 pipewire-pulse
 playerctl
+prettier
 pulseaudio-alsa
 python-black
 qemu-desktop
@@ -82,6 +89,10 @@ swaybg
 swayfx
 swaylock-effects
 terminus-font
+texlive-bin
+texlive-latex
+texlive-latexextra
+texlive-plaingeneric
 thunar
 tmux
 ttf-droid
@@ -91,6 +102,7 @@ ttf-roboto
 unzip
 vi
 virtualbox-guest-iso
+visual-studio-code-bin
 vulkan-headers
 waybar
 wget

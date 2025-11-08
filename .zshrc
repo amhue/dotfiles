@@ -1,5 +1,6 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 ZSH_THEME="darkblood"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )

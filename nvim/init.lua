@@ -189,7 +189,7 @@ require('mason-lspconfig').setup({
             require('lspconfig')[server_name].setup({})
         end,
     },
-    ensure_installed = { "lua_ls", "clangd", "java_language_server", "html", "ts_ls", "cssls", "emmet_ls", "pylsp" }
+    ensure_installed = { "lua_ls", "clangd", "jdtls", "html", "ts_ls", "cssls", "emmet_ls", "pylsp" }
 })
 
 ---
