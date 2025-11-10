@@ -1,0 +1,23 @@
+#+title: Dotfiles
+#+author: Aritra Mondal
+
+* Config and system info
+
+System specific config files
+for my window manager (/sway[fx]/), terminal emulator (/alacritty/),
+display manager (/ly/), notification daemon (/mako/), status bar
+(/waybar, i3status[not anymore]/), /eww widgets/,
+text editors (/emacs/ and /neovim/), application launcher (/wofi/),
+and /zsh/.
+
+It also includes my installed applications and cursor, icons and fonts.
+
+#+begin_src shell
+git clone https://github.com/amhue/dotfiles.git
+#+end_src
+
+#+begin_src shell
+cd dotfiles
+chmod +x setup.sh
+./setup.sh
+#+end_src

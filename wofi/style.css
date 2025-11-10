@@ -1,0 +1,40 @@
+window {
+    border: 1px solid rgb(107, 93, 79);
+    background-color: rgba(24, 26, 28, 0.96);
+    filter: blur(1.5rem);
+    border-radius: 10px;
+}
+
+#input {
+    background: rgba(80, 68, 55, 0.8);
+    border: 1px solid rgb(107, 93, 79);
+    color: rgb(241, 245, 203);
+    font-size: 14px;
+    margin-bottom: 7px;
+    padding: 7px;
+}
+
+#entry {
+    padding: 7px;
+    border-radius: 4px;
+}
+
+#entry:selected {
+    background-color: rgb(139, 111, 71);
+    color: rgb(227, 235, 202);
+}
+
+/* .entry { */
+/*     /\* display: flex; *\/ */
+/*     /\* text-align: center; *\/ */
+/* } */
+
+image {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* expander { */
+/*     padding: 5px; */
+/*     border-radius: 4px; */
+/* } */
