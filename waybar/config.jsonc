@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "modules-left": ["custom/shutdown", "sway/workspaces"],
+    "modules-left": ["custom/shutdown", "sway/workspaces", "backlight"],
     "modules-center": ["custom/arch", "custom/firefox", "custom/emacs", "custom/files", "custom/alacritty"],
     "modules-right": ["battery", "clock", "memory", "disk", "cpu", "network", "pulseaudio", "bluetooth"],
     "sway/window": {
@@ -17,6 +17,10 @@
             "2. 🎧": [],
             "3. 🎮": []
         }
+    },"backlight": {
+        "device": "intel_backlight",
+        "format": "{percent}% {icon}",
+        "format-icons": ["󰃞", "󰃟", "󰃠"]
     },
     "battery": {
         "format": "{icon} {capacity}%",

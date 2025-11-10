@@ -1,4 +1,4 @@
-(defconst SPLASH-WIDTH 65)
+(defconst SPLASH-WIDTH 55)
 
 (switch-to-buffer
  (set-buffer (get-buffer-create "splash")))

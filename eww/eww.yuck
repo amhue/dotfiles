@@ -1,7 +1,7 @@
 (defwindow power
     :monitor 0
     :class "power"
-    :geometry (geometry :x "10px" :y "12px" :width "300px" :height "300px")
+    :geometry (geometry :x "6px" :y "6px" :width "300px" :height "300px")
     (shutdown))
 
 (defwidget shutdown []

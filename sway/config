@@ -253,7 +253,7 @@ bindsym $mod+r mode "resize"
     bindsym XF86AudioNext exec playerctl next
     bindsym XF86AudioPrev exec playerctl previous
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
+    bindsym Print exec slurp | grim -g - - | tee ~/Pictures/Screenshots/$(date --rfc-3339=seconds | sed 's/ /_/').png | wl-copy
 
 #
 # Status Bar:
@@ -302,7 +302,7 @@ for_window [class=".*"] {
 # default_border pixel 2
 
 gaps inner 3
-gaps outer 8
+gaps outer 3
 
 # client.focused "#9514b5" "#9514b5" "#ffffff" "#111111" "#9514b5"
 

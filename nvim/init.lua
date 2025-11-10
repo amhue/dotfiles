@@ -97,8 +97,8 @@ require("lazy").setup({
                 suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
                 -- log_level = 'debug',
             },
-        }
-        -- {'nvim-tree/nvim-tree.lua'},
+        },
+        {'nvim-tree/nvim-tree.lua'},
     },
     -- install = { colorscheme = { "modus" } },
     checker = { enabled = true, notify = false },
@@ -122,7 +122,7 @@ require('mini.statusline').setup()
 require('mini.git').setup()
 require('mini.diff').setup()
 require('autoclose').setup()
--- require("nvim-tree").setup()
+require("nvim-tree").setup()
 -- require('mini.tabline').setup()
 
 -- set colorscheme

@@ -13,7 +13,10 @@
     border: 1px solid #6b5d4f;
 }
 
-.off, .reboot, .suspend, .logout {
+.off,
+.reboot,
+.suspend,
+.logout {
     /* background-color: aliceblue; */
     color: white;
     font-size: 2em;
@@ -34,9 +37,9 @@
 }
 
 .power-label {
-    margin-top: -6.8em;
+    margin-top: -7em;
     margin-bottom: -2.1em;
-    margin-left: -0.2em;
+    margin-left: 0.2em;
     font-size: 1.2em;
     padding-right: 0.2em;
 }

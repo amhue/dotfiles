@@ -29,6 +29,7 @@ dosfstools
 doxygen
 efibootmgr
 emacs-wayland
+eom
 eww
 faac
 fastfetch
@@ -82,7 +83,6 @@ qt5-wayland
 qt6-wayland
 raylib
 reflector
-shotwell
 sof-firmware
 spotify-launcher
 swaybg
